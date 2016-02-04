@@ -1,0 +1,10 @@
+---
+- command: mysql -NBe "SELECT COUNT(*) FROM mysql.time_zone"
+  register: mysql_timezones_count
+  changed_when: false
+
+- name: ensure timezone data is imported
+  shell: "mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql mysql"
+  when: mysql_timezones_count.stdout|int < 1
+  notify:
+    - restart mysql or mariadb

@@ -1,0 +1,5 @@
+---
+- name: ensure packages are installed
+  package:
+    name: "{{ item }}"
+  with_items: mysql_packages

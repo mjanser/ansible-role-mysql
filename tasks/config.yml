@@ -1,0 +1,24 @@
+---
+- name: ensure includedir is configured
+  lineinfile:
+    dest: "{{ mysql_config_file }}"
+    line: "!includedir {{ mysql_config_dir }}"
+    regexp: "^!includedir {{ mysql_config_dir }}"
+
+- name: ensure includedir directory exists
+  file:
+    path: "{{ mysql_config_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: ensure server is configured
+  template:
+    src: server.cnf.j2
+    dest: "{{ mysql_config_dir }}/server-custom.cnf"
+    owner: root
+    group: root
+    mode: 644
+  notify:
+    - restart mysql or mariadb

@@ -1,0 +1,8 @@
+CREATE TABLE my_table (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO my_table VALUES (1, 'entry 1'), (2, 'entry 2');
+

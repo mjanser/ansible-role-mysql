@@ -1,0 +1,10 @@
+---
+mysql_packages:
+    - mysql-community-client
+    - mysql-community-server
+    - MySQL-python
+
+mysql_service: mysqld
+
+mysql_config_file: /etc/my.cnf
+mysql_config_dir: /etc/my.cnf.d

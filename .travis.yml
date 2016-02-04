@@ -1,0 +1,15 @@
+---
+language: python
+python: "2.7"
+
+install:
+  - pip install ansible
+  - cd tests/
+  - echo -e "[defaults]\nroles_path = ../../\nhostfile = inventory" > ansible.cfg
+  - echo "localhost" > inventory
+
+script:
+  - ansible-playbook playbook.yml --syntax-check
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/

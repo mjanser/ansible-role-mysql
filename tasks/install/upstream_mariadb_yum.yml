@@ -1,0 +1,14 @@
+---
+- name: define distribution value for upstream repository
+  set_fact:
+    mysql_upstream_dist: "{% if ansible_distribution == 'Fedora' %}fedora{% else %}rhel{% endif %}{{ ansible_distribution_version }}"
+
+- name: ensure upstream repository is configured
+  template:
+    src: mariadb-yum-repo.conf.j2
+    dest: /etc/yum.repos.d/mariadb.conf
+    owner: root
+    group: root
+    mode: 644
+
+- include: packages.yml

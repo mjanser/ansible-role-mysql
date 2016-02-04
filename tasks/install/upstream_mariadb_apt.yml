@@ -1,0 +1,11 @@
+---
+- name: ensure upstream repository key is added
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: "0xcbcb082a1bb943db"
+
+- name: ensure upstream repository is configured
+  apt_repository:
+    repo: "deb [arch=amd64,i386] http://mirrors.n-ix.net/mariadb/repo/{{ mysql_upstream_version }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
+
+- include: packages.yml

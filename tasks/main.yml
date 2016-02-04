@@ -1,0 +1,43 @@
+---
+- include_vars: "{{ item }}"
+  with_first_found:
+   - "{{ mysql_vendor }}/{{ mysql_origin }}/{{ ansible_distribution }}.yml"
+   - "{{ mysql_vendor }}/{{ ansible_distribution }}.yml"
+   - "{{ mysql_vendor }}/{{ mysql_origin }}/{{ ansible_os_family }}.yml"
+   - "{{ mysql_vendor }}/{{ ansible_os_family }}.yml"
+
+- name: define upstream version
+  set_fact:
+    mysql_upstream_version: "{% if mysql_vendor == 'mysql' %}5.7{% else %}10.1{% endif %}"
+  when: not mysql_upstream_version
+
+- include: install/packages.yml
+  when: mysql_origin == 'distribution'
+
+- include: install/upstream_mysql_yum.yml
+  when: "ansible_pkg_mgr in ['yum', 'dnf'] and mysql_vendor == 'mysql' and mysql_origin == 'upstream'"
+
+- include: install/upstream_mariadb_yum.yml
+  when: "ansible_pkg_mgr in ['yum', 'dnf'] and mysql_vendor == 'mariadb' and mysql_origin == 'upstream'"
+
+- include: install/upstream_mysql_apt.yml
+  when: ansible_pkg_mgr == 'apt' and mysql_vendor == 'mysql' and mysql_origin == 'upstream'
+
+- include: install/upstream_mariadb_apt.yml
+  when: ansible_pkg_mgr == 'apt' and mysql_vendor == 'mariadb' and mysql_origin == 'upstream'
+
+- include: config.yml
+
+- name: ensure service runs
+  service:
+    name: "{{ mysql_service }}"
+    enabled: yes
+    state: started
+
+- include: secure-installation.yml
+- include: firewall.yml
+- include: databases.yml
+- include: users.yml
+
+- include: timezones.yml
+  when: mysql_import_timezones

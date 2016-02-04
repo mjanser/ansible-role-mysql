@@ -1,0 +1,9 @@
+---
+- name: ensure users are created
+  mysql_user:
+    name: "{{ item.name }}"
+    host: "{{ item.host | default('localhost') }}"
+    password: "{{ item.password }}"
+    priv: "{{ item.privileges | default('*.*:USAGE') }}"
+    append_privs: "{{ item.append_privileges | default('no') }}"
+  with_items: mysql_users

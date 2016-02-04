@@ -1,0 +1,4 @@
+- name: restart mysql or mariadb
+  service:
+    name: "{{ mysql_service }}"
+    state: restarted

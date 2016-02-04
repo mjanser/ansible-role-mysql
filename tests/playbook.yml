@@ -1,0 +1,12 @@
+---
+- hosts: all
+  roles:
+    - ansible-role-mysql
+  vars:
+    mysql_databases:
+      - name: my_db
+        import_file: my_db.sql
+    mysql_users:
+      - name: my_user
+        password: "very LONG s3cr3t password"
+        privileges: "my_db.*:ALL"
