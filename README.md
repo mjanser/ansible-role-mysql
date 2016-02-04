@@ -1,6 +1,6 @@
 # Ansible Role: mysql
 
-An Ansible role that installs MySQL or MariaDB server on Fedora.
+An Ansible role that installs MySQL or MariaDB server on Fedora, Debian and Ubuntu.
 
 ## Requirements
 
