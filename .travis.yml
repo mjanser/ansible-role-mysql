@@ -4,9 +4,8 @@ python: "2.7"
 
 install:
   - pip install ansible
-  - cd tests/
-  - echo -e "[defaults]\nroles_path = ../../\nhostfile = inventory" > ansible.cfg
-  - echo "localhost" > inventory
+  - ln -s . vagrant
+  - echo "[default]\nroles_path = ." > ansible.cfg
 
 script:
   - ansible-playbook playbook.yml --syntax-check

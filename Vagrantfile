@@ -1,138 +1,127 @@
 Vagrant.configure('2') do |config|
-  config.vm.box = 'obnox/fedora23-64-lxc'
+  config.vm.box = 'obnox/fedora24-64-lxc'
 
-  config.vm.synced_folder '.', '/vagrant', disabled: true
-  config.vm.synced_folder '.', '/vagrant/ansible-role-mysql'
-
-  config.vm.define 'fedora-23-mysql' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mysql-fedora-23'
-    vmconfig.vm.box = 'obnox/fedora23-64-lxc'
-
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mysql' ]
-    end
+  config.vm.define 'mysql-dist-fedora-24' do | vmconfig |
+    vmconfig.vm.hostname = 'mysql-dist-fedora-24'
+    vmconfig.vm.box = 'obnox/fedora24-64-lxc'
   end
 
-  config.vm.define 'fedora-23-mysql-upstream' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mysql-upstream-fedora-23'
-    vmconfig.vm.box = 'obnox/fedora23-64-lxc'
-
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mysql', 'upstream' ]
-    end
+  config.vm.define 'mysql-upstream-fedora-24' do | vmconfig |
+    vmconfig.vm.hostname = 'mysql-upstream-fedora-24'
+    vmconfig.vm.box = 'obnox/fedora24-64-lxc'
   end
 
-  config.vm.define 'fedora-23-mariadb' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mariadb-fedora-23'
-    vmconfig.vm.box = 'obnox/fedora23-64-lxc'
-
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mariadb' ]
-    end
+  config.vm.define 'mariadb-dist-fedora-24' do | vmconfig |
+    vmconfig.vm.hostname = 'mariadb-dist-fedora-24'
+    vmconfig.vm.box = 'obnox/fedora24-64-lxc'
   end
 
-  config.vm.define 'fedora-23-mariadb-upstream' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mariadb-upstream-fedora-23'
-    vmconfig.vm.box = 'obnox/fedora23-64-lxc'
-
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mariadb', 'upstream' ]
-    end
+  config.vm.define 'mariadb-upstream-fedora-24' do | vmconfig |
+    vmconfig.vm.hostname = 'mariadb-upstream-fedora-24'
+    vmconfig.vm.box = 'obnox/fedora24-64-lxc'
   end
 
-  config.vm.define 'debian-jessie-mysql' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mysql-debian-jessie'
-    vmconfig.vm.box = 'debian/jessie64'
-
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mysql' ]
-    end
-  end
-
-  config.vm.define 'debian-jessie-mysql-upstream' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mysql-upstream-debian-jessie'
-    vmconfig.vm.box = 'debian/jessie64'
-
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mysql', 'upstream' ]
-    end
-  end
-
-  config.vm.define 'debian-jessie-mariadb' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mariadb-debian-jessie'
-    vmconfig.vm.box = 'debian/jessie64'
-
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mariadb' ]
-    end
-  end
-
-  config.vm.define 'debian-jessie-mariadb-upstream' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mariadb-upstream-debian-jessie'
-    vmconfig.vm.box = 'debian/jessie64'
-
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mariadb', 'upstream' ]
-    end
-  end
-
-  config.vm.define 'ubuntu-trusty-mysql' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mysql-ubuntu-trusty'
+  config.vm.define 'mysql-dist-ubuntu-trusty' do | vmconfig |
+    vmconfig.vm.hostname = 'mysql-dist-ubuntu-trusty'
     vmconfig.vm.box = 'fgrehm/trusty64-lxc'
-
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mysql' ]
-    end
   end
 
-  config.vm.define 'ubuntu-trusty-mysql-upstream' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mysql-upstream-ubuntu-trusty'
+  config.vm.define 'mysql-upstream-ubuntu-trusty' do | vmconfig |
+    vmconfig.vm.hostname = 'mysql-upstream-ubuntu-trusty'
     vmconfig.vm.box = 'fgrehm/trusty64-lxc'
-
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mysql', 'upstream' ]
-    end
   end
 
-  config.vm.define 'ubuntu-trusty-mariadb' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mariadb-ubuntu-trusty'
+  config.vm.define 'mariadb-dist-ubuntu-trusty' do | vmconfig |
+    vmconfig.vm.hostname = 'mariadb-dist-ubuntu-trusty'
     vmconfig.vm.box = 'fgrehm/trusty64-lxc'
-
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mariadb' ]
-    end
   end
 
-  config.vm.define 'ubuntu-trusty-mariadb-upstream' do | vmconfig |
-    vmconfig.vm.hostname = 'ansible-role-mariadb-upstream-ubuntu-trusty'
+  config.vm.define 'mariadb-upstream-ubuntu-trusty' do | vmconfig |
+    vmconfig.vm.hostname = 'mariadb-upstream-ubuntu-trusty'
     vmconfig.vm.box = 'fgrehm/trusty64-lxc'
+  end
 
-    vmconfig.vm.provision 'shell' do |s|
-      s.keep_color = true
-      s.path = 'tests/init.sh'
-      s.args = [ 'mariadb', 'upstream' ]
-    end
+  config.vm.provision 'ansible_local' do |ansible|
+    ansible.playbook = 'playbook.yml'
+    ansible.groups = {
+        'mysql' => [
+            'fedora-24-mysql-dist',
+            'fedora-24-mysql-upstream',
+            'ubuntu-trusty-mysql-dist',
+            'ubuntu-trusty-mysql-upstream',
+        ],
+        'mysql:vars' => {'mysql_vendor' => 'mysql'},
+        'mariadb' => [
+            'fedora-24-mariadb-dist',
+            'fedora-24-mariadb-upstream',
+            'ubuntu-trusty-mariadb-dist',
+            'ubuntu-trusty-mariadb-upstream',
+        ],
+        'mariadb:vars' => {'mysql_vendor' => 'mariadb'},
+        'dist' => [
+            'fedora-24-mysql-dist',
+            'fedora-24-mariadb-dist',
+            'ubuntu-trusty-mysql-dist',
+            'ubuntu-trusty-mariadb-dist',
+        ],
+        'dist:vars' => {'mysql_origin' => 'distribution'},
+        'upstream' => [
+            'fedora-24-mysql-upstream',
+            'fedora-24-mariadb-upstream',
+            'ubuntu-trusty-mysql-upstream',
+            'ubuntu-trusty-mariadb-upstream',
+        ],
+        'upstream:vars' => {'mysql_origin' => 'upstream'}
+    }
+    ansible.sudo = true
+  end
+
+  config.vm.provision 'shell' do |s|
+    s.keep_color = true
+    s.inline = <<SCRIPT
+MYSQL_VENDOR=$(hostname | cut -d- -f1)
+
+# vendor test
+[ $MYSQL_VENDOR == 'mariadb' ] && { mysql --version | grep -i 'mariadb' && echo 'mariadb installed' || { echo 'not mariadb installed' && exit 1; }; }
+[ $MYSQL_VENDOR == 'mysql' ] && { mysql --version | grep -i 'mariadb' && { echo 'not mysql installed' && exit 1; } || echo 'mysql installed'; }
+mysql --version
+
+# connection tests
+mysql -e 'show databases;' 2>/dev/null | grep -q 'performance_schema' && echo 'running normally through socket' || { echo 'not running through socket' && exit 1; }
+mysql -h 127.0.0.1 -e 'show databases;' 2>/dev/null | grep -q 'performance_schema' && echo 'running normally through network' || { echo 'not running through network' && exit 1; }
+
+# timezone import test
+mysql -NBe 'select count(*) from mysql.time_zone;' 2>/dev/null | grep -q '^[0-9]\\{3,10\\}$' && echo 'timezones imported' || { echo 'timezones not imported' && exit 1; }
+
+# database creation test
+mysql -e 'show databases;' 2>/dev/null | grep -q 'my_db' && echo 'database created' || { echo 'database not created' && exit 1; }
+
+# database import test
+mysql -e 'select * from my_db.my_table;' 2>/dev/null | grep -q 'entry 1' && echo 'data imported' || { echo 'data not imported' && exit 1; }
+
+# user creation test
+mysql -u my_user -p"very LONG s3cr3t password" -e 'show databases;' 2>/dev/null | grep -q 'my_db' && echo 'user created' || { echo 'user not created' && exit 1; }
+
+cd /vagrant/
+ansible-playbook playbook.yml --limit $(hostname) --inventory-file /tmp/vagrant-ansible/inventory/vagrant_ansible_local_inventory 2>&1 | tee /tmp/ansible.log
+
+# Remove colors from log file
+sed -i -r "s/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" /tmp/ansible.log
+
+# Test for errors
+test -n "$(grep -L 'ERROR' /tmp/ansible.log)" \
+    && { echo "Errors test: pass"; } \
+    || { echo "Errors test: fail" && exit 1; }
+
+# Test for warnings
+test -n "$(grep -L 'WARNING' /tmp/ansible.log)" \
+    && { echo "Warnings test: pass"; } \
+    || { echo "Warnings test: fail" && exit 1; }
+
+# Test for idempotence
+grep -q "changed=0.*failed=0" /tmp/ansible.log \
+    && { echo "Idempotence test: pass"; } \
+    || { echo "Idempotence test: fail" && exit 1; }
+SCRIPT
   end
 end

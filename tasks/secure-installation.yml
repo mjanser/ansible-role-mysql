@@ -12,7 +12,7 @@
      name: root
      host: "{{ item }}"
      state: absent
-  with_items: mysql_remote_root_hosts.stdout_lines
+  with_items: "{{ mysql_remote_root_hosts.stdout_lines }}"
 
 - name: get hosts of root users
   command: mysql -NBe "SELECT Host FROM mysql.user WHERE User = 'root' ORDER BY (Host='localhost') ASC"
@@ -24,7 +24,7 @@
     name: root
     password: "{{ mysql_root_password }}"
     host: "{{ item }}"
-  with_items: mysql_root_hosts.stdout_lines
+  with_items: "{{ mysql_root_hosts.stdout_lines }}"
   when: "mysql_root_password|default('')"
 
 - include: security/my_cnf.yml
@@ -38,7 +38,7 @@
      name: ""
      host: "{{ item }}"
      state: absent
-  with_items: mysql_anonymous_hosts.stdout_lines
+  with_items: "{{ mysql_anonymous_hosts.stdout_lines }}"
 
 - name: ensure test database is removed
   mysql_db:

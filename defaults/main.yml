@@ -5,7 +5,7 @@ mysql_upstream_version: ~ # MariaDB: 10.1, MySQL: 5.7
 
 mysql_root_password: "My $3cr3t password"
 
-mysql_import_timezones: yes
+mysql_import_timezones: true
 
 mysql_bind_address: 0.0.0.0
 

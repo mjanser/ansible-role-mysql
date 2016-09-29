@@ -6,4 +6,4 @@
     password: "{{ item.password }}"
     priv: "{{ item.privileges | default('*.*:USAGE') }}"
     append_privs: "{{ item.append_privileges | default('no') }}"
-  with_items: mysql_users
+  with_items: "{{ mysql_users }}"

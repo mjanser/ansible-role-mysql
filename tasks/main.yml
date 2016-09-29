@@ -11,20 +11,19 @@
     mysql_upstream_version: "{% if mysql_vendor == 'mysql' %}5.7{% else %}10.1{% endif %}"
   when: not mysql_upstream_version
 
-- include: install/packages.yml
-  when: mysql_origin == 'distribution'
-
 - include: install/upstream_mysql_yum.yml
-  when: "ansible_pkg_mgr in ['yum', 'dnf'] and mysql_vendor == 'mysql' and mysql_origin == 'upstream'"
+  when: ansible_pkg_mgr in ['yum', 'dnf'] and mysql_vendor == 'mysql' and mysql_origin == 'upstream'
 
 - include: install/upstream_mariadb_yum.yml
-  when: "ansible_pkg_mgr in ['yum', 'dnf'] and mysql_vendor == 'mariadb' and mysql_origin == 'upstream'"
+  when: ansible_pkg_mgr in ['yum', 'dnf'] and mysql_vendor == 'mariadb' and mysql_origin == 'upstream'
 
 - include: install/upstream_mysql_apt.yml
   when: ansible_pkg_mgr == 'apt' and mysql_vendor == 'mysql' and mysql_origin == 'upstream'
 
 - include: install/upstream_mariadb_apt.yml
   when: ansible_pkg_mgr == 'apt' and mysql_vendor == 'mariadb' and mysql_origin == 'upstream'
+
+- include: install/packages.yml
 
 - include: config.yml
 

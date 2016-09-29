@@ -5,7 +5,7 @@
     collation: "{{ item.collation | default('utf8_general_ci') }}"
     encoding: "{{ item.encoding | default('utf8') }}"
   register: mysql_databases_created
-  with_items: mysql_databases
+  with_items: "{{ mysql_databases }}"
 
 - name: import data from backup into databases
   mysql_db:
@@ -13,4 +13,4 @@
     state: import
     target: "{{ item.item.import_file }}"
   when: item.changed and item.item.import_file
-  with_items: mysql_databases_created.results
+  with_items: "{{ mysql_databases_created.results }}"

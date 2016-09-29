@@ -5,5 +5,5 @@
     zone: "{{ item }}"
     permanent: true
     state: enabled
-  with_items: mysql_firewall_zones
+  with_items: "{{ mysql_firewall_zones }}"
   when: ansible_distribution == 'Fedora'
