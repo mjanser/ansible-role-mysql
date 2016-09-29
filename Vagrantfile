@@ -45,31 +45,31 @@ Vagrant.configure('2') do |config|
     ansible.playbook = 'playbook.yml'
     ansible.groups = {
         'mysql' => [
-            'fedora-24-mysql-dist',
-            'fedora-24-mysql-upstream',
-            'ubuntu-trusty-mysql-dist',
-            'ubuntu-trusty-mysql-upstream',
+            'mysql-dist-fedora-24',
+            'mysql-upstream-fedora-24',
+            'mysql-dist-ubuntu-trusty',
+            'mysql-upstream-ubuntu-trusty',
         ],
         'mysql:vars' => {'mysql_vendor' => 'mysql'},
         'mariadb' => [
-            'fedora-24-mariadb-dist',
-            'fedora-24-mariadb-upstream',
-            'ubuntu-trusty-mariadb-dist',
-            'ubuntu-trusty-mariadb-upstream',
+            'mariadb-dist-fedora-24',
+            'mariadb-upstream-fedora-24',
+            'mariadb-dist-ubuntu-trusty',
+            'mariadb-upstream-ubuntu-trusty',
         ],
         'mariadb:vars' => {'mysql_vendor' => 'mariadb'},
         'dist' => [
-            'fedora-24-mysql-dist',
-            'fedora-24-mariadb-dist',
-            'ubuntu-trusty-mysql-dist',
-            'ubuntu-trusty-mariadb-dist',
+            'mysql-dist-fedora-24',
+            'mariadb-dist-fedora-24',
+            'mysql-dist-ubuntu-trusty',
+            'mariadb-dist-ubuntu-trusty',
         ],
         'dist:vars' => {'mysql_origin' => 'distribution'},
         'upstream' => [
-            'fedora-24-mysql-upstream',
-            'fedora-24-mariadb-upstream',
-            'ubuntu-trusty-mysql-upstream',
-            'ubuntu-trusty-mariadb-upstream',
+            'mysql-upstream-fedora-24',
+            'mariadb-upstream-fedora-24',
+            'mysql-upstream-ubuntu-trusty',
+            'mariadb-upstream-ubuntu-trusty',
         ],
         'upstream:vars' => {'mysql_origin' => 'upstream'}
     }

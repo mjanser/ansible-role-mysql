@@ -1,0 +1,10 @@
+---
+mysql_packages:
+    - MariaDB-client
+    - MariaDB-server
+    - MySQL-python
+
+mysql_service: mariadb
+
+mysql_config_file: /etc/my.cnf
+mysql_config_dir: /etc/my.cnf.d
