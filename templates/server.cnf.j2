@@ -20,13 +20,13 @@ thread_concurrency = {{ mysql_thread_concurrency }}
 {% endif %}
 
 {% if mysql_ssl_ca %}
-ssl-ca={{ mysql_ssl_ca }}
+ssl-ca = {{ mysql_ssl_ca }}
 {% endif %}
 {% if mysql_ssl_cert %}
-ssl-cert={{ mysql_ssl_cert }}
+ssl-cert = {{ mysql_ssl_cert }}
 {% endif %}
 {% if mysql_ssl_key %}
-ssl-key={{ mysql_ssl_key }}
+ssl-key = {{ mysql_ssl_key }}
 {% endif %}
 
 {{ mysql_custom_config }}

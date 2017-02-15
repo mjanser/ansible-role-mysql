@@ -16,7 +16,7 @@
   when: "mysql_root_password|default('') != '' and mysql_check_new_auth.stdout != ''"
 
 - name: ensure root user has password set using mysql_native_password
-  command: "mysql -NBe \"ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY '{{ mysql_root_password }}'\""
+  command: "mysql -NBe \"UPDATE mysql.user SET password = PASSWORD('{{ mysql_root_password }}'), plugin = '' WHERE user = 'root'\""
   when: "mysql_root_password|default('') != '' and mysql_check_root_auth_plugin.stdout != ''"
 
 - include: my_cnf.yml

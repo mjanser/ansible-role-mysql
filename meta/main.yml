@@ -8,7 +8,7 @@ galaxy_info:
     - name: Fedora
     - name: Ubuntu
       versions:
-        - trusty
+        - xenial
   galaxy_tags:
     - database
 dependencies: []

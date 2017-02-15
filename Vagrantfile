@@ -1,75 +1,75 @@
 Vagrant.configure('2') do |config|
-  config.vm.box = 'obnox/fedora24-64-lxc'
+  config.vm.box = 'mjanser/fedora25-64-lxc'
 
-  config.vm.define 'mysql-dist-fedora-24' do | vmconfig |
-    vmconfig.vm.hostname = 'mysql-dist-fedora-24'
-    vmconfig.vm.box = 'obnox/fedora24-64-lxc'
+  config.vm.define 'mysql-dist-fedora-25' do | vmconfig |
+    vmconfig.vm.hostname = 'mysql-dist-fedora-25'
+    vmconfig.vm.box = 'mjanser/fedora25-64-lxc'
   end
 
-  config.vm.define 'mysql-upstream-fedora-24' do | vmconfig |
-    vmconfig.vm.hostname = 'mysql-upstream-fedora-24'
-    vmconfig.vm.box = 'obnox/fedora24-64-lxc'
+  config.vm.define 'mysql-upstream-fedora-25' do | vmconfig |
+    vmconfig.vm.hostname = 'mysql-upstream-fedora-25'
+    vmconfig.vm.box = 'mjanser/fedora25-64-lxc'
   end
 
-  config.vm.define 'mariadb-dist-fedora-24' do | vmconfig |
-    vmconfig.vm.hostname = 'mariadb-dist-fedora-24'
-    vmconfig.vm.box = 'obnox/fedora24-64-lxc'
+  config.vm.define 'mariadb-dist-fedora-25' do | vmconfig |
+    vmconfig.vm.hostname = 'mariadb-dist-fedora-25'
+    vmconfig.vm.box = 'mjanser/fedora25-64-lxc'
   end
 
-  config.vm.define 'mariadb-upstream-fedora-24' do | vmconfig |
-    vmconfig.vm.hostname = 'mariadb-upstream-fedora-24'
-    vmconfig.vm.box = 'obnox/fedora24-64-lxc'
+  config.vm.define 'mariadb-upstream-fedora-25' do | vmconfig |
+    vmconfig.vm.hostname = 'mariadb-upstream-fedora-25'
+    vmconfig.vm.box = 'mjanser/fedora25-64-lxc'
   end
 
-  config.vm.define 'mysql-dist-ubuntu-trusty' do | vmconfig |
-    vmconfig.vm.hostname = 'mysql-dist-ubuntu-trusty'
-    vmconfig.vm.box = 'fgrehm/trusty64-lxc'
+  config.vm.define 'mysql-dist-ubuntu-xenial' do | vmconfig |
+    vmconfig.vm.hostname = 'mysql-dist-ubuntu-xenial'
+    vmconfig.vm.box = 'aravind/xenial-lxc-amd64'
   end
 
-  config.vm.define 'mysql-upstream-ubuntu-trusty' do | vmconfig |
-    vmconfig.vm.hostname = 'mysql-upstream-ubuntu-trusty'
-    vmconfig.vm.box = 'fgrehm/trusty64-lxc'
+  config.vm.define 'mysql-upstream-ubuntu-xenial' do | vmconfig |
+    vmconfig.vm.hostname = 'mysql-upstream-ubuntu-xenial'
+    vmconfig.vm.box = 'aravind/xenial-lxc-amd64'
   end
 
-  config.vm.define 'mariadb-dist-ubuntu-trusty' do | vmconfig |
-    vmconfig.vm.hostname = 'mariadb-dist-ubuntu-trusty'
-    vmconfig.vm.box = 'fgrehm/trusty64-lxc'
+  config.vm.define 'mariadb-dist-ubuntu-xenial' do | vmconfig |
+    vmconfig.vm.hostname = 'mariadb-dist-ubuntu-xenial'
+    vmconfig.vm.box = 'aravind/xenial-lxc-amd64'
   end
 
-  config.vm.define 'mariadb-upstream-ubuntu-trusty' do | vmconfig |
-    vmconfig.vm.hostname = 'mariadb-upstream-ubuntu-trusty'
-    vmconfig.vm.box = 'fgrehm/trusty64-lxc'
+  config.vm.define 'mariadb-upstream-ubuntu-xenial' do | vmconfig |
+    vmconfig.vm.hostname = 'mariadb-upstream-ubuntu-xenial'
+    vmconfig.vm.box = 'aravind/xenial-lxc-amd64'
   end
 
   config.vm.provision 'ansible_local' do |ansible|
     ansible.playbook = 'playbook.yml'
     ansible.groups = {
         'mysql' => [
-            'mysql-dist-fedora-24',
-            'mysql-upstream-fedora-24',
-            'mysql-dist-ubuntu-trusty',
-            'mysql-upstream-ubuntu-trusty',
+            'mysql-dist-fedora-25',
+            'mysql-upstream-fedora-25',
+            'mysql-dist-ubuntu-xenial',
+            'mysql-upstream-ubuntu-xenial',
         ],
         'mysql:vars' => {'mysql_vendor' => 'mysql'},
         'mariadb' => [
-            'mariadb-dist-fedora-24',
-            'mariadb-upstream-fedora-24',
-            'mariadb-dist-ubuntu-trusty',
-            'mariadb-upstream-ubuntu-trusty',
+            'mariadb-dist-fedora-25',
+            'mariadb-upstream-fedora-25',
+            'mariadb-dist-ubuntu-xenial',
+            'mariadb-upstream-ubuntu-xenial',
         ],
         'mariadb:vars' => {'mysql_vendor' => 'mariadb'},
         'dist' => [
-            'mysql-dist-fedora-24',
-            'mariadb-dist-fedora-24',
-            'mysql-dist-ubuntu-trusty',
-            'mariadb-dist-ubuntu-trusty',
+            'mysql-dist-fedora-25',
+            'mariadb-dist-fedora-25',
+            'mysql-dist-ubuntu-xenial',
+            'mariadb-dist-ubuntu-xenial',
         ],
         'dist:vars' => {'mysql_origin' => 'distribution'},
         'upstream' => [
-            'mysql-upstream-fedora-24',
-            'mariadb-upstream-fedora-24',
-            'mysql-upstream-ubuntu-trusty',
-            'mariadb-upstream-ubuntu-trusty',
+            'mysql-upstream-fedora-25',
+            'mariadb-upstream-fedora-25',
+            'mysql-upstream-ubuntu-xenial',
+            'mariadb-upstream-ubuntu-xenial',
         ],
         'upstream:vars' => {'mysql_origin' => 'upstream'}
     }
