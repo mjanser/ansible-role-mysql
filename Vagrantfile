@@ -23,22 +23,22 @@ Vagrant.configure('2') do |config|
 
   config.vm.define 'mysql-dist-ubuntu-xenial' do | vmconfig |
     vmconfig.vm.hostname = 'mysql-dist-ubuntu-xenial'
-    vmconfig.vm.box = 'aravind/xenial-lxc-amd64'
+    vmconfig.vm.box = 'nhinds/xenial64'
   end
 
   config.vm.define 'mysql-upstream-ubuntu-xenial' do | vmconfig |
     vmconfig.vm.hostname = 'mysql-upstream-ubuntu-xenial'
-    vmconfig.vm.box = 'aravind/xenial-lxc-amd64'
+    vmconfig.vm.box = 'nhinds/xenial64'
   end
 
   config.vm.define 'mariadb-dist-ubuntu-xenial' do | vmconfig |
     vmconfig.vm.hostname = 'mariadb-dist-ubuntu-xenial'
-    vmconfig.vm.box = 'aravind/xenial-lxc-amd64'
+    vmconfig.vm.box = 'nhinds/xenial64'
   end
 
   config.vm.define 'mariadb-upstream-ubuntu-xenial' do | vmconfig |
     vmconfig.vm.hostname = 'mariadb-upstream-ubuntu-xenial'
-    vmconfig.vm.box = 'aravind/xenial-lxc-amd64'
+    vmconfig.vm.box = 'nhinds/xenial64'
   end
 
   config.vm.provision 'ansible_local' do |ansible|
