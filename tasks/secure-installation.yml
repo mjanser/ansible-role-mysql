@@ -6,6 +6,7 @@
   command: mysql -NBe "SELECT Host FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1')"
   register: mysql_remote_root_hosts
   changed_when: false
+  check_mode: no
 
 - name: ensure remote root users are removed
   mysql_user:
@@ -18,6 +19,7 @@
   command: mysql -NBe "SELECT Host FROM mysql.user WHERE User = 'root' ORDER BY (Host='localhost') ASC"
   register: mysql_root_hosts
   changed_when: false
+  check_mode: no
 
 - name: ensure root user has password set
   mysql_user:
@@ -32,6 +34,7 @@
 - command: mysql -NBe "SELECT Host FROM mysql.user WHERE User = ''"
   register: mysql_anonymous_hosts
   changed_when: false
+  check_mode: no
 
 - name: ensure anonymous users are removed
   mysql_user:
