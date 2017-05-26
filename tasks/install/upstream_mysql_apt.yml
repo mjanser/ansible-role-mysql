@@ -1,7 +1,7 @@
 ---
 - name: ensure mysql upstream repository package is downloaded
   get_url:
-    url: http://dev.mysql.com/get/mysql-apt-config_0.6.0-1_all.deb
+    url: http://dev.mysql.com/get/mysql-apt-config_0.8.6-1_all.deb
     dest: /root/mysql-apt-config.deb
 
 - name: ensure mysql upstream repository package is configured
