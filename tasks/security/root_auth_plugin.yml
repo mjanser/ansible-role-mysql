@@ -1,7 +1,6 @@
 ---
 # On some installations the MySQL root user has the auth plugin check_token configured.
 # To change the root password we have to first change the auth plugin to mysql_native_password here.
-# We need to adjust .my.cnf here so that the other tasks will work as expected.
 
 - name: check auth system capabilities
   command: mysql -NBe "DESCRIBE mysql.user plugin"
@@ -17,9 +16,6 @@
   check_mode: no
   when: "mysql_root_password|default('') != '' and mysql_check_new_auth.stdout != ''"
 
-- name: ensure root user has password set using mysql_native_password
-  command: "mysql -NBe \"UPDATE mysql.user SET password = PASSWORD('{{ mysql_root_password }}'), plugin = '' WHERE user = 'root'\""
-  when: "mysql_root_password|default('') != '' and mysql_check_root_auth_plugin.stdout != ''"
-
-- include: my_cnf.yml
+- name: ensure root user uses mysql_native_password
+  command: "mysql -NBe \"UPDATE mysql.user SET plugin = 'mysql_native_password' WHERE user = 'root'\""
   when: "mysql_root_password|default('') != '' and mysql_check_root_auth_plugin.stdout != ''"
