@@ -1,0 +1,6 @@
+[Unit]
+Description=Backup data for MySQL/MariaDB
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/mysql-backup.sh

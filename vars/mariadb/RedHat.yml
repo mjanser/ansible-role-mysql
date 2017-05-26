@@ -8,3 +8,5 @@ mysql_service: mariadb
 
 mysql_config_file: /etc/my.cnf
 mysql_config_dir: /etc/my.cnf.d
+
+mysql_backup_config_file: /etc/my.backup.cnf

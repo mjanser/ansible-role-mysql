@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup data for MySQL/MariaDB
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=15min
+
+[Install]
+WantedBy=timers.target

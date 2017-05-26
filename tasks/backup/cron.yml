@@ -1,0 +1,11 @@
+---
+- name: ensure cron is installed
+  package:
+    name: cronie
+
+- name: ensure cron job is installed
+  cron:
+    name: MySQL/MariaDB backup
+    cron_file: mysql-backup
+    special_time: daily
+    job: /usr/local/bin/mysql-backup

@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# MySQL/MariaDB Backup Script
+#
+
+DIR='{{ mysql_backup_destination }}'
+ROTATE=30
+
+set -o pipefail
+
+cleanup()
+{
+    find "${DIR}/" -maxdepth 1 -type f -name "*.sql*" -mtime +${ROTATE} -print0 | xargs -0 -r rm -f
+}
+
+DATABASES=$(mysql --defaults-extra-file={{ mysql_backup_config_file }} -s -r -N -e 'SHOW DATABASES')
+if [ $? -ne 0 ]; then
+  echo "Could not fetch databases, check your configuration in /etc/mysql/backup.cnf"
+  exit 2
+fi
+
+echo "$DATABASES" | grep -Ev "^(mysql|information_schema|performance_schema|sys)$" | while read DBNAME; do
+  TARGET_FILE=${DBNAME}_`date +%Y%m%d-%H%M%S`.sql
+
+  mysqldump --defaults-extra-file={{ mysql_backup_config_file }} --opt --flush-logs --single-transaction ${DBNAME} > ${DIR}/${TARGET_FILE}
+  ln -s --force ${TARGET_FILE} ${DIR}/${DBNAME}_latest.sql
+done
+
+if [ $? -eq 0 ] ; then
+    cleanup
+fi

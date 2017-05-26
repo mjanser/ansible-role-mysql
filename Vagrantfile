@@ -102,6 +102,9 @@ mysql -e 'select * from my_db.my_table;' 2>/dev/null | grep -q 'entry 1' && echo
 # user creation test
 mysql -u my_user -p"very LONG s3cr3t password" -e 'show databases;' 2>/dev/null | grep -q 'my_db' && echo 'user created' || { echo 'user not created' && exit 1; }
 
+# backup test
+/usr/local/bin/mysql-backup && echo 'backup created' || { echo 'backup failed' && exit 1;}
+
 cd /vagrant/
 ansible-playbook playbook.yml --limit $(hostname) --inventory-file /tmp/vagrant-ansible/inventory/vagrant_ansible_local_inventory 2>&1 | tee /tmp/ansible.log
 

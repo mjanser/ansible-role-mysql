@@ -1,0 +1,37 @@
+---
+- name: ensure backup user is created
+  mysql_user:
+    name: backup
+    host: localhost
+    password: "{{ mysql_backup_password }}"
+    priv: "*.*:SELECT,RELOAD,LOCK TABLES,SHOW VIEW,PROCESS"
+
+- name: ensure backup directory exists
+  file:
+    dest: "{{ mysql_backup_destination }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: ensure backup config file is installed
+  template:
+    src: backup.cnf.j2
+    dest: "{{ mysql_backup_config_file }}"
+    owner: root
+    group: root
+    mode: 0640
+
+- name: ensure backup script is installed
+  template:
+    src: backup.sh.j2
+    dest: /usr/local/bin/mysql-backup
+    owner: root
+    group: root
+    mode: 0755
+
+- include: backup/cron.yml
+  when: ansible_service_mgr != 'systemd'
+
+- include: backup/systemd.yml
+  when: ansible_service_mgr == 'systemd'

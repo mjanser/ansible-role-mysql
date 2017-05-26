@@ -40,3 +40,6 @@
 
 - include: timezones.yml
   when: mysql_import_timezones
+
+- include: backup.yml
+  when: mysql_backup

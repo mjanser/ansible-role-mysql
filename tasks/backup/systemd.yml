@@ -1,0 +1,16 @@
+---
+- name: ensure systemd service for backup is installed
+  copy:
+    src: backup.service
+    dest: /etc/systemd/system/mysql-backup.service
+
+- name: ensure systemd timer for backup is installed
+  copy:
+    src: backup.timer
+    dest: /etc/systemd/system/mysql-backup.timer
+
+- name: ensure systemd timer for backup is enabled
+  service:
+    name: mysql-backup.timer
+    state: started
+    enabled: yes
