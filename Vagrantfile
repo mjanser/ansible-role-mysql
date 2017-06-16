@@ -21,6 +21,26 @@ Vagrant.configure('2') do |config|
     vmconfig.vm.box = 'mjanser/fedora25-64-lxc'
   end
 
+  config.vm.define 'mysql-dist-debian-jessie' do | vmconfig |
+    vmconfig.vm.hostname = 'mysql-dist-debian-jessie'
+    vmconfig.vm.box = 'debian/jessie64'
+  end
+
+  config.vm.define 'mysql-upstream-debian-jessie' do | vmconfig |
+    vmconfig.vm.hostname = 'mysql-upstream-debian-jessie'
+    vmconfig.vm.box = 'debian/jessie64'
+  end
+
+  config.vm.define 'mariadb-dist-debian-jessie' do | vmconfig |
+    vmconfig.vm.hostname = 'mariadb-dist-debian-jessie'
+    vmconfig.vm.box = 'debian/jessie64'
+  end
+
+  config.vm.define 'mariadb-upstream-debian-jessie' do | vmconfig |
+    vmconfig.vm.hostname = 'mariadb-upstream-debian-jessie'
+    vmconfig.vm.box = 'debian/jessie64'
+  end
+
   config.vm.define 'mysql-dist-ubuntu-xenial' do | vmconfig |
     vmconfig.vm.hostname = 'mysql-dist-ubuntu-xenial'
     vmconfig.vm.box = 'nhinds/xenial64'
@@ -47,6 +67,8 @@ Vagrant.configure('2') do |config|
         'mysql' => [
             'mysql-dist-fedora-25',
             'mysql-upstream-fedora-25',
+            'mysql-dist-debian-jessie',
+            'mysql-upstream-debian-jessie',
             'mysql-dist-ubuntu-xenial',
             'mysql-upstream-ubuntu-xenial',
         ],
@@ -54,6 +76,8 @@ Vagrant.configure('2') do |config|
         'mariadb' => [
             'mariadb-dist-fedora-25',
             'mariadb-upstream-fedora-25',
+            'mariadb-dist-debian-jessie',
+            'mariadb-upstream-debian-jessie',
             'mariadb-dist-ubuntu-xenial',
             'mariadb-upstream-ubuntu-xenial',
         ],
@@ -61,6 +85,8 @@ Vagrant.configure('2') do |config|
         'dist' => [
             'mysql-dist-fedora-25',
             'mariadb-dist-fedora-25',
+            'mysql-dist-debian-jessie',
+            'mariadb-dist-debian-jessie',
             'mysql-dist-ubuntu-xenial',
             'mariadb-dist-ubuntu-xenial',
         ],
@@ -68,12 +94,15 @@ Vagrant.configure('2') do |config|
         'upstream' => [
             'mysql-upstream-fedora-25',
             'mariadb-upstream-fedora-25',
+            'mysql-upstream-debian-jessie',
+            'mariadb-upstream-debian-jessie',
             'mysql-upstream-ubuntu-xenial',
             'mariadb-upstream-ubuntu-xenial',
         ],
         'upstream:vars' => {'mysql_origin' => 'upstream'}
     }
     ansible.sudo = true
+    ansible.install_mode = "pip"
   end
 
   config.vm.provision 'shell' do |s|

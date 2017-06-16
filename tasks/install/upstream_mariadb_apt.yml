@@ -2,8 +2,8 @@
 - name: ensure mariadb upstream repository key is added
   apt_key:
     keyserver: keyserver.ubuntu.com
-    id: "0xF1656F24C74CD1D8"
+    id: "{{ mysql_apt_key }}"
 
 - name: ensure mariadb upstream repository is configured
   apt_repository:
-    repo: "deb [arch=amd64,i386] http://mirrors.n-ix.net/mariadb/repo/{{ mysql_upstream_version }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
+    repo: "deb [arch=amd64,i386,ppc64el] http://mirrors.n-ix.net/mariadb/repo/{{ mysql_upstream_version }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
