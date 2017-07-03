@@ -17,7 +17,7 @@ Available variables are listed below, along with default values:
 
     mysql_vendor: mysql
     mysql_origin: distribution
-    mysql_upstream_version: ~ # MariaDB: 10.1, MySQL: 5.7
+    mysql_upstream_version: ~ # MariaDB: 10.2, MySQL: 5.7
 
     mysql_root_password: "My $3cr3t password"
 

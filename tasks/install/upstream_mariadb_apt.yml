@@ -6,4 +6,4 @@
 
 - name: ensure mariadb upstream repository is configured
   apt_repository:
-    repo: "deb [arch=amd64,i386,ppc64el] http://mirrors.n-ix.net/mariadb/repo/{{ mysql_upstream_version }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
+    repo: "deb [arch=amd64] http://mirrors.n-ix.net/mariadb/repo/{{ mysql_upstream_version }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"

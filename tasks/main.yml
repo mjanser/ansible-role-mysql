@@ -2,13 +2,13 @@
 - include_vars: "{{ item }}"
   with_first_found:
    - "{{ mysql_vendor }}/{{ mysql_origin }}/{{ ansible_distribution }}.yml"
-   - "{{ mysql_vendor }}/{{ ansible_distribution }}.yml"
    - "{{ mysql_vendor }}/{{ mysql_origin }}/{{ ansible_os_family }}.yml"
+   - "{{ mysql_vendor }}/{{ ansible_distribution }}.yml"
    - "{{ mysql_vendor }}/{{ ansible_os_family }}.yml"
 
 - name: define upstream version
   set_fact:
-    mysql_upstream_version: "{% if mysql_vendor == 'mysql' %}5.7{% else %}10.1{% endif %}"
+    mysql_upstream_version: "{% if mysql_vendor == 'mysql' %}5.7{% else %}10.2{% endif %}"
   when: not mysql_upstream_version
 
 - include: install/upstream_mysql_yum.yml
