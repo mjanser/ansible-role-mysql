@@ -1,5 +1,5 @@
 ---
-mysql_apt_key: "0xcbcb082a1bb943db"
+mysql_apt_key: "0xF1656F24C74CD1D8"
 mysql_packages:
     - mariadb-client
     - mariadb-server

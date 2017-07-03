@@ -8,7 +8,7 @@ galaxy_info:
     - name: Fedora
     - name: Debian
       versions:
-        - jessie
+        - stretch
     - name: Ubuntu
       versions:
         - xenial
