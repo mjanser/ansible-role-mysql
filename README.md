@@ -45,7 +45,7 @@ Available variables are listed below, along with default values:
 
     mysql_custom_config: ~
 
-    mysql_backup: yes
+    mysql_backup: no
     mysql_backup_destination: /var/lib/backup/database
     mysql_backup_password: "My $3cr3t password"
 
