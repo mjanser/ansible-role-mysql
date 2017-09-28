@@ -3,7 +3,7 @@ mysql_vendor: mysql
 mysql_origin: distribution
 mysql_upstream_version: ~ # MariaDB: 10.2, MySQL: 5.7
 
-mysql_root_password: "My $3cr3t password"
+mysql_root_password: ~
 
 mysql_import_timezones: yes
 
@@ -30,7 +30,7 @@ mysql_custom_config: ~
 
 mysql_backup: no
 mysql_backup_destination: /var/lib/backup/database
-mysql_backup_password: "My $3cr3t password"
+mysql_backup_password: ~
 
 mysql_firewall_zones: []
 
