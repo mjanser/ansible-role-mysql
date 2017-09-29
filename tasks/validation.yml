@@ -1,0 +1,15 @@
+---
+- name: verify variable 'mysql_root_password' has been changed from the default
+  fail:
+    msg: "'mysql_root_password' variable has not been changed from the default. Using the default 'mysql_root_password' is a security risk"
+  when: mysql_root_password is none
+
+- name: verify variable 'mysql_backup_password' has been changed from the default
+  fail:
+    msg: "'mysql_backup_password' variable has not been changed from the default. Using the default 'mysql_backup_password' is a security risk"
+  when: mysql_backup != false and mysql_backup_password is none
+
+- name: verify variables 'mysql_vendor' and 'mysql_origin' are consistent
+  fail:
+    msg: "variables 'mysql_vendor' and 'mysql_origin' are inconsistent. CentOS do not distribute MySQL community edition. Set mysql_origin=upstream"
+  when: mysql_vendor == 'mysql' and mysql_origin == 'distribution' and ansible_distribution == 'CentOS'

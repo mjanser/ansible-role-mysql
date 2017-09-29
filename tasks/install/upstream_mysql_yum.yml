@@ -1,7 +1,7 @@
 ---
 - name: define distribution value for mysql upstream repository
   set_fact:
-    mysql_upstream_dist: "{% if ansible_distribution == 'Fedora' %}fc{% else %}el{% endif %}{{ ansible_distribution_version }}"
+    mysql_upstream_dist: "{% if ansible_distribution == 'Fedora' %}fc{% else %}el{% endif %}{{ ansible_distribution_major_version }}"
 
 - name: ensure mysql upstream repository is installed
   package:

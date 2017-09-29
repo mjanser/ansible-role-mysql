@@ -12,5 +12,5 @@
     name: "{{ item.item.name }}"
     state: import
     target: "{{ item.item.import_file }}"
-  when: item.changed and item.item.import_file
+  when: item.changed and item.item.import_file is defined and item.item.import_file
   with_items: "{{ mysql_databases_created.results }}"

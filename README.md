@@ -45,7 +45,7 @@ Available variables are listed below, along with default values:
 
     mysql_custom_config: ~
 
-    mysql_backup: yes
+    mysql_backup: no
     mysql_backup_destination: /var/lib/backup/database
     mysql_backup_password: "My $3cr3t password"
 
@@ -107,13 +107,13 @@ Additional configuration can be defined in the variable `mysql_custom_config`, f
 
 ### Backup
 
-By default a backup script is installed which runs daily.
+While backups are disabled by default, an automatic daily backup script can be enabled by setting `mysql_backup` to `yes`.
+
 It simply dumps all databases to the directory defined in `mysql_backup_destination` as an SQL file with a timestamp.
 Additionally it links the latest backup file per database to `[database]_latest.sql`.
 
-The backup can be disabled with setting the variable `mysql_backup` to `false`.
-
 A database user for the backup will be created automatically with the password set in the variable `mysql_backup_password`.
+Be sure to set this variable to a sensible password, as it is empty be default and an error will be thrown if backups are enabled and this password is not set.
 
 ### Firewall
 
